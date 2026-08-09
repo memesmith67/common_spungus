@@ -1,4 +1,4 @@
-#copyright john morris beck 2026
+#copyright john morris beck 2026 gpl2
 common_spungus(){ sh|sh;};
 advanced_spungus(){ awk '
 function f(x,y){if($1==x){print y;e=0}}
