@@ -1,4 +1,5 @@
 #!/usr/bin/env common_spungus
+#copyright john morris beck 2026 gpl2
 printf %s 'advanced_spungus(){ awk '\''
 function f(x,y){if($1==x){print y;e=0}}
 $0=="advanced_spungus"{s=!s;next}!s;s{e=1;
