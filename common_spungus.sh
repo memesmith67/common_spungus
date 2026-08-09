@@ -1,16 +1,19 @@
-#copyright john morris beck 2026 gpl2
+#copyright john morris beck 2026
 common_spungus(){ sh|sh;};
 advanced_spungus(){ awk '
-$1!="advanced_spungus";
-$1=="advanced_spungus"{
-    a=$3$4$6!~/^[a-zA-Z0-9_()*]*$/;
-    b=$5!~/^[+<>\/*%&|!=|-]*$/;
-    if($2!="literal"&&(a||b))exit 1;
-    f["assign"]=$3"="$4$5$6;
-    f["declare"]=$3" "$4;
-    f["malloc"]=$3"="$2"("$4")";
-    f["free"]=$2"("$3")";
-    f["control"]=$3"("$4"){";
-    f["case"]=$2" "$3":";
-    f["literal"]=$3;
-    print f[$2]";"}';};
+function f(x,y){if($1==x){print y";";e=0}}
+$0=="advanced_spungus"{s=!s;next};!s;s{e=1;
+f("declare",$2" "$3)
+f("assign",$2"="$3$4$5)
+f("malloc",$2"="$1"("$3")")
+f("free",$1"("$2")")
+f("switch",$1"("$2"){")
+f("while",$1"("$2"){")
+f("case",$1" "$2":")
+f("break",$1)
+f("default",$1":")
+f("}",$1)
+if(e||$2$3$5!~/^[a-zA-Z0-9_()*]*$/||
+$2$3$5~/[a-zA-Z0-9_\)]\(/||
+$4!~/^[<>\/*%&|!=|+-]*$/){
+print ";=;";exit 1}}';};
