@@ -2,7 +2,7 @@
 common_spungus(){ sh|sh;};
 advanced_spungus(){ awk '
 function f(x,y){if($1==x){print y;e=0}}
-$0=="advanced_spungus"{s=!s;next};!s;s{e=1;
+$0=="advanced_spungus"{s=!s;next}!s;s{e=1;
 f("declare",$2" "$3";")
 f("assign",$2"="$3$4$5";")
 f("malloc",$2"="$1"("$3");")
